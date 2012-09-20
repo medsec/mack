@@ -70,7 +70,8 @@
  *	<p>
  *	* -C Rainbow_Cracker
  *	* -\-cracker.length \<word length\>
- *  * -cracker.keytable \<path to key table\>
+ *  * -\-cracker.keytable \<path to key table\>
+ *  * -\-cracker.rainbowtable \<path to rainbow tables\>
  *
  * 	Additional Features:
  *	<p>
@@ -80,7 +81,7 @@
  *
  *  Example:
  	\verbatim
- 	mack -c Rainbow_Cracker --cracker.keytable visible_german --cracker.length 7 --cracker.chainlength 1024 -a md5 -t ../targets/targets
+ 	mack -c Rainbow_Cracker --cracker.keytable visible_german --cracker.length 7 --cracker.chainlength 1024 --cracker.rainbowtable ../tables/ -a md5 -t ../targets/targets
  	\endverbatim
 
  *

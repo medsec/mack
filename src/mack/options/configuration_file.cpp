@@ -108,7 +108,7 @@ mack::options::configuration_file::parse(
   {
     BOOST_THROW_EXCEPTION(mack::core::null_pointer_error());
   }
-  size_t line_number = 0;
+  size_t line_number = 1;
   size_t line_start = 0;
   size_t line_end = content.find('\n', line_start);
   while (line_end != std::string::npos)

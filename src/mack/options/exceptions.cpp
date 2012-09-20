@@ -174,7 +174,7 @@ mack::options::get_error_message(
     }
     if (configuration_file_line != NULL)
     {
-      ss << " in line " << configuration_file_line;
+      ss << " in line " << (*configuration_file_line);
     }
   }
 
@@ -290,7 +290,7 @@ mack::options::get_error_message(
     }
     if (configuration_file_line != NULL)
     {
-      ss << " in line " << configuration_file_line;
+      ss << " in line " << (*configuration_file_line);
     }
   }
 
@@ -397,7 +397,7 @@ mack::options::get_error_message(
     }
     if (configuration_file_line != NULL)
     {
-      ss << " in line " << configuration_file_line;
+      ss << " in line " << (*configuration_file_line);
     }
   }
 
@@ -482,7 +482,7 @@ mack::options::get_error_message(
     }
     if (configuration_file_line != NULL)
     {
-      ss << " in line " << configuration_file_line;
+      ss << " in line " << (*configuration_file_line);
     }
   }
 

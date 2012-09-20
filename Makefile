@@ -6,7 +6,8 @@ LIBPATH =-L/usr/lib -L/usr/local/cuda/lib64
 # Compiler optimization level
 OPTIMIZATION_LEVEL=2
 ### Required libraries
-LIBS =-lboost_system -lboost_filesystem -lcudart -lexpat
+LIBS =-lboost_system -lboost_filesystem -lexpat
+CUDA_LIBS =-lcudart
 
 ### Compiler settings
 CXX =g++-4.6
@@ -16,7 +17,7 @@ CUDA =/usr/local/cuda/include
 NVXX =nvcc
 NVXXFLAGS = -arch=sm_20
 
-LDXXFLAGS =$(LIBS) $(LIBPATH)
+LDXXFLAGS =$(LIBS) $(CUDA_LIBS) $(LIBPATH)
 
 # Disabling builtin rules
 .SUFFIXES:
@@ -106,7 +107,7 @@ tests: obj_dirs tests_obj_dirs $(TESTS_BIN_PATH)/run_tests
 	$(TESTS_BIN_PATH)/run_tests
 
 clean:
-	rm -rf $(OBJ_PATH) $(CONFIGURATION_OBJ_PATH) $(TESTS_OBJ_PATH) $(BIN) $(CONFIGURATION_BIN_PATH) $(TESTS_BIN_PATH)/run_tests doc/html doc/xml doc/latex
+	rm -rf $(OBJ_PATH) $(CONFIGURATION_OBJ_PATH) $(TESTS_OBJ_PATH) $(BIN) $(CONFIGURATION_BIN_PATH) $(TESTS_BIN_PATH)/run_tests doc/html doc/xml doc/latex doc/man
 	rm -rf $(SOURCE_PATH)/mack/options/types $(SOURCE_PATH)/mack/options/programs.cpp
 
 include Makefile.targets
@@ -117,7 +118,7 @@ $(BIN)/%:$(OBJ_PATH)/$(PROGRAMS_SOURCE_PATH)/%.o $(OBJECTS)
 
 # configuration programs
 $(PARSE_DOXYGEN):$(CONFIGURATION_PROGRAMS_PATH)/parse_doxygen.cpp $(CONFIGURATION_OBJECTS) $(OBJ_PATH)/$(SOURCE_PATH)/mack/core/xml_parser.o $(OBJ_PATH)/$(SOURCE_PATH)/mack/core/files.o
-	$(CXX) $(CXXFLAGS) $(LDXXFLAGS) -I$(SOURCE_PATH) $(SOURCES_INCLUDE) -I$(CONFIGURATION_SOURCE_PATH) $(CONFIGURATION_SOURCES_INCLUDE) $(CONFIGURATION_OBJECTS_LINK_PATTERN) $(OBJ_PATH)/$(SOURCE_PATH)/mack/core/files.o $(OBJ_PATH)/$(SOURCE_PATH)/mack/core/xml_parser.o $(CONFIGURATION_PROGRAMS_PATH)/parse_doxygen.cpp -o $@
+	$(CXX) $(CXXFLAGS) $(LIBS) $(LIBPATH) -I$(SOURCE_PATH) $(SOURCES_INCLUDE) -I$(CONFIGURATION_SOURCE_PATH) $(CONFIGURATION_SOURCES_INCLUDE) $(CONFIGURATION_OBJECTS_LINK_PATTERN) $(OBJ_PATH)/$(SOURCE_PATH)/mack/core/files.o $(OBJ_PATH)/$(SOURCE_PATH)/mack/core/xml_parser.o $(CONFIGURATION_PROGRAMS_PATH)/parse_doxygen.cpp -o $@
 
 # test program
 $(TESTS_OBJ_PATH)/run_tests.o:tests/main.cpp $(OBJECTS) $(TESTS_OBJECTS)
