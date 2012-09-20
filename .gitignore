@@ -10,3 +10,8 @@
 *.lai
 *.la
 *.a
+
+#felix' upload script
+upload_test_run.sh
+
+*~

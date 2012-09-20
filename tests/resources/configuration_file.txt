@@ -1,0 +1,13 @@
+help
+ s1 =  recursive_class  
+s1.s = empty_class # my comment
+s1.default = empty_class
+ # Comment
+long1.i = empty_class
+
+s2 = tests::mack::options::ambiguous_class
+long2.standard = option 1
+long2.d = option 2 
+s2.i
+b
+
